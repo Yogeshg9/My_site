@@ -1780,7 +1780,7 @@
 
 
 
-  <a href="Bharat_Ghumo.html" class="back-btn">⬅ Back to Home</a>
+  <a href="index.html" class="back-btn">⬅ Back to Home</a>
   <!-- Preconnect for faster loading -->
 <link rel="preconnect" href="https://www.youtube.com">
 <link rel="preconnect" href="https://www.google.com">
@@ -1851,30 +1851,27 @@
     const selectedBox = document.getElementById(code);
     if(selectedBox) selectedBox.style.display = "block";
 
-    // showMedia function में सुधार
+    
     function showMedia(stateCode) {
-        // ✅ यह लाइन बदली गई है। यह अब दिखने वाले State Box के अंदर CLASS "media-container" को ढूंढेगी।
-        // NOTE: आपको HTML में id="mediaContainer" को class="media-container" में बदलना होगा।
+        
         const container = selectedBox ? selectedBox.querySelector(".media-container") : null;
         
         const media = stateMedia[stateCode];
 
         if(!container || !media){
-            // अगर कंटेनर नहीं मिला, तो यह उस जगह को टारगेट नहीं कर सकता।
-            // हम इसे selectedBox के ठीक नीचे डालने की कोशिश करेंगे (पुराने ID लॉजिक की तरह)
-            // अगर selectedBox है, तो उसके अंत में जोड़ो
+           
             if(selectedBox) {
-               // अगर class="media-container" नहीं मिला, तो एक नया div बनाकर जोड़ दो 
+              
                const fallbackContainer = document.createElement('div');
                fallbackContainer.className = 'media-container';
                selectedBox.appendChild(fallbackContainer);
-               showMedia(stateCode); // रिकर्शन (Recursion) के द्वारा इसे फिर से कॉल करें
+               showMedia(stateCode); 
                return; 
             }
             return;
         }
 
-        // --- Media Content Creation (No Change) ---
+        
         container.innerHTML = `
             <div style="text-align:center; margin-top:20px;">
                 <iframe loading="lazy" width="560" height="315"
@@ -1905,12 +1902,12 @@
         };
     }
 
-    // Page load होने पर media load करने का call (No Change)
+    
     window.addEventListener("load", () => {
         if(code) setTimeout(() => showMedia(code), 0); // delay 0ms for faster load
     });
 
-    // आपका पुराना background style, अगर आप इसे रखना चाहते हैं तो यहाँ डाल सकते हैं:
+   
      document.body.style.background = "url('image.png') center/cover no-repeat";
 
 </script>
