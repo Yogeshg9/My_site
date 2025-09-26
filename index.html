@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Bharat Ghumo</title>
+  <style>
+    :root{
+      --bg:#f6f7fb; --card:#fff; --ink:#111827; --muted:#6b7280;
+      --brand:#0ea5e9; --brand-dark:#0369a1; --ring:#bae6fd;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;color:var(--ink);background:var(--bg)}
+    a{text-decoration:none;color:inherit}
+
+    header {
+      text-align: center;
+      padding: 1.2rem 0.8rem;
+      background: linear-gradient(135deg, #ff9800, #e91e63);
+      color: white;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      border-bottom-left-radius: 30px;
+      border-bottom-right-radius: 30px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+     header h1 {
+      font-size: 2.2rem;
+      margin: 0;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    header p {
+      margin-top: 0.3rem;
+      font-size: 1rem;
+      font-style: italic;
+      opacity: 0.9;
+    }
+
+    header:hover {
+      background: linear-gradient(135deg, #e91e63, #9c27b0);
+      transition: background 0.6s ease;
+    }
+
+    .nav{max-width:1280px;margin:auto;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;color:#fff;font-weight:800;background:linear-gradient(135deg,var(--brand),var(--brand-dark));box-shadow:0 10px 20px rgba(3,105,161,.25)}
+    .title{font-weight:800}
+    .subtitle{font-size:.9rem;color:var(--muted)}
+    .btn{display:inline-block;background:linear-gradient(135deg,var(--brand),var(--brand-dark));color:#fff;padding:10px 14px;border-radius:12px;font-weight:600;box-shadow:0 8px 18px rgba(3,105,161,.25)}
+
+    .hero{max-width:1280px;margin:18px auto;padding:0 16px}
+    .hero h1{margin:6px 0;font-size:clamp(1.4rem,3.5vw,2.2rem)}
+    .hero p{color:var(--muted);margin:6px 0 14px}
+
+    .section-title{max-width:1280px;margin:18px auto 8px;padding:0 16px;font-weight:800}
+
+    .grid{max-width:1280px;margin:8px auto 28px;padding:0 16px;display:grid;grid-template-columns:repeat(1,1fr);gap:16px}
+     @media (min-width:200px){
+  .grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+    @media (min-width:640px){
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width:1000px){
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width:1250px){
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+
+    .card{background:var(--card);border:1px solid #e8ecf2;border-radius:16px;overflow:hidden;box-shadow:0 8px 22px rgba(0,0,0,.05);transition:transform .18s,box-shadow .18s}
+    .card:hover {transform: scale(1.03);box-shadow: 0 16px 32px rgba(14,165,233,.12);}
+
+    .card-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 14px;
+      border-bottom: 1px solid #f1f5f9;
+      background-color:rgb(173, 219, 227);
+      color: white; 
+}
+
+    .chip{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;color:#fff;font-size:.85rem;background:linear-gradient(135deg,var(--brand),var(--brand-dark))}
+    .state{margin:0;font-size:1.02rem}
+    .muted{color:var(--muted);font-size:.88rem}
+
+    .slider{position:relative;width:100%;height:220px;background:#eaeef5;overflow:hidden}
+    .slider .imgwrap{position:absolute;inset:0}
+    .slider img{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .6s}
+    .slider img.active{opacity:1}
+    .caption{position:absolute;left:10px;bottom:10px;background:rgba(0,0,0,.55);color:#fff;padding:6px 10px;border-radius:10px;font-size:.9rem}
+
+    .lists{padding:12px 14px 16px;display:grid;gap:10px}
+    .lists h4{margin:0 0 6px;font-size:.95rem}
+    ul{margin:0;padding-left:18px}
+    li{margin:3px 0;color:var(--ink);}
+
+    .placeholder{
+      display:grid;place-items:center;height:100%;color:var(--muted);font-size:.95rem;padding:10px;text-align:center
+    }
+
+    .explore-link {
+      display:inline-block;
+      margin-top:8px;
+      padding:8px 12px;
+      background:linear-gradient(135deg,var(--brand),var(--brand-dark));
+      color:white;
+      border-radius:8px;
+      text-decoration:none;
+      font-weight:600;
+    }
+
+    footer{padding:18px 16px 28px;border-top:1px solid #eef2f7;background:#fff}
+    .foot{max-width:1280px;margin:auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+    .small{color:var(--muted);font-size:.9rem}
+
+  
+
+  #searchBar {
+    display: grid;
+  width: 250px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-right: 30px;
+  justify-self: end;
+
+   }
+
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>BHARAT GHUMO</h1>
+    <p>Explore India's Most Beautiful Places & Temples</p>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <h1>Discover India's Highlights</h1>
+    </section>
+
+    <input type="text" id="searchBar" placeholder="Search State or UT..."  />
+
+
+
+    <h2 class="section-title">States</h2>
+    <section id="states" class="grid" aria-live="polite"></section>
+
+    <h2 class="section-title">Union Territories</h2>
+    <section id="uts" class="grid" aria-live="polite"></section>
+  </main>
+
+  <footer>
+    <div class="foot">
+      <div class="small">© 2025 Bharat Ghumo • Built with HTML, CSS & JS</div>
+      <a class="btn" href="#top">Back to Top</a>
+    </div>
+  </footer>
+
+  <script>
+/*
+  Approach:
+  - Data arrays (states, uts) contain places + temples.
+  - For each card we build a slider (6 places + 1 temple) by fetching images via Wikipedia/Commons or fallback to Unsplash.
+  - Added an Explore More button (link) that opens state.html?code=<STATE_CODE>
+*/
+
+const states = [
+  { code:"AP", name:"Andhra Pradesh",
+    places:["Araku Valley","Borra Caves","Visakhapatnam Beach","Lepakshi","Amaravati","Nagarjuna Sagar"],
+    temples:["Tirupati Balaji Temple","Kanaka Durga Temple (Vijayawada)"]
+  },
+  { code:"AR", name:"Arunachal Pradesh",
+    places:["Tawang","Ziro Valley","Bomdila","Namdapha National Park","Sela Pass","Dirang"],
+    temples:["Tawang Monastery","Malinithan Temple"]
+  },
+  { code:"AS", name:"Assam",
+    places:["Kaziranga National Park","Majuli Island","Manas National Park","Sivasagar","Haflong","Tezpur"],
+    temples:["Kamakhya Temple","Umananda Temple"]
+  },
+  { code:"BR", name:"Bihar",
+    places:["Bodh Gaya","Nalanda","Rajgir","Vaishali","Vikramshila","Patna Sahib"],
+    temples:["Mahabodhi Temple","Vishnupad Temple"]
+  },
+  { code:"CG", name:"Chhattisgarh",
+    places:["Chitrakote Falls","Tirathgarh Falls","Kanger Valley National Park","Sirpur","Barnawapara Sanctuary","Bhoramdeo"],
+    temples:["Bhoramdeo Temple","Danteshwari Temple"]
+  },
+  { code:"GA", name:"Goa",
+    places:["Baga Beach","Anjuna Beach","Dudhsagar Falls","Fort Aguada","Calangute","Old Goa"],
+    temples:["Mangeshi Temple","Shanta Durga Temple"]
+  },
+  { code:"GJ", name:"Gujarat",
+    places:["Gir National Park","Rann of Kutch","Statue of Unity","Dwarka","Somnath","Sabarmati Ashram"],
+    temples:["Somnath Jyotirlinga","Dwarkadhish Temple"]
+  },
+  { code:"HR", name:"Haryana",
+    places:["Kurukshetra","Morni Hills","Pinjore Gardens","Sultanpur Bird Sanctuary","Surajkund","Karna Lake"],
+    temples:["Mata Mansa Devi (Panchkula)","Jyotisar Temple"]
+  },
+  { code:"HP", name:"Himachal Pradesh",
+    places:["Shimla","Manali","Dharamshala","Spiti Valley","Kullu","Dalhousie"],
+    temples:["Jwalamukhi Temple","Chamunda Devi Temple"]
+  },
+  { code:"JH", name:"Jharkhand",
+    places:["Dassam Falls","Hundru Falls","Betla National Park","Parasnath Hill","Netarhat","Patratu Valley"],
+    temples:["Baidyanath Jyotirlinga (Deoghar)","Parasnath Temple"]
+  },
+  { code:"KA", name:"Karnataka",
+    places:["Hampi","Mysore Palace","Coorg","Jog Falls","Bandipur National Park","Badami Caves"],
+    temples:["Kukke Subramanya Temple","Murudeshwar Temple"]
+  },
+  { code:"KL", name:"Kerala",
+    places:["Alleppey Backwaters","Munnar","Kovalam","Wayanad","Thekkady","Athirapally Falls"],
+    temples:["Guruvayur Temple","Sabarimala Temple"]
+  },
+  { code:"MP", name:"Madhya Pradesh",
+    places:["Khajuraho","Kanha National Park","Sanchi Stupa","Ujjain","Bhimbetka","Pachmarhi"],
+    temples:["Mahakaleshwar Jyotirlinga","Omkareshwar Jyotirlinga"]
+  },
+  { code:"MH", name:"Maharashtra",
+    places:["Ajanta Caves","Ellora Caves","Gateway of India (Mumbai)","Mahabaleshwar","Lonavala","Alibaug"],
+    temples:["Shirdi Sai Baba Temple","Trimbakeshwar Jyotirlinga"]
+  },
+  { code:"MN", name:"Manipur",
+    places:["Loktak Lake","Kangla Fort","Keibul Lamjao","Ima Keithel","Andro Village","Khonghampat Orchidarium"],
+    temples:["Shri Govindajee Temple","Sanamahi Temple"]
+  },
+  { code:"ML", name:"Meghalaya",
+    places:["Shillong","Cherrapunji","Mawsynram","Dawki (Umngot River)","Living Root Bridges","Nohkalikai Falls"],
+    temples:["Mahadev Khola Dham","Nartiang Durga Temple"]
+  },
+  { code:"MZ", name:"Mizoram",
+    places:["Aizawl","Reiek","Vantawng Falls","Phawngpui (Blue Mountain)","Tamdil Lake","Durtlang Hills"],
+    temples:["Shiv Mandir (Aizawl)","Hanuman Mandir (Aizawl)"]
+  },
+  { code:"NL", name:"Nagaland",
+    places:["Kohima","Dzukou Valley","Japfu Peak","Mokokchung","Khonoma Village","Tuophema"],
+    temples:["Dimapur Kalibari","Rangapahar Shiv Temple"]
+  },
+  { code:"OD", name:"Odisha",
+    places:["Konark Sun Temple","Puri (Jagannath)","Chilika Lake","Udayagiri & Khandagiri","Simlipal National Park","Dhauli"],
+    temples:["Jagannath Temple (Puri)","Lingaraj Temple (Bhubaneswar)"]
+  },
+  { code:"PB", name:"Punjab",
+    places:["Amritsar Heritage Area","Jallianwala Bagh","Wagah Border","Anandpur Sahib","Patiala Qila Mubarak","Rural Farm Stays"],
+    temples:["Durgiana Temple (Amritsar)","Kali Mata Temple (Patiala)"]
+  },
+  { code:"RJ", name:"Rajasthan",
+    places:["Jaipur (Amer, Hawa Mahal)","Udaipur (City Palace, Lake)","Jaisalmer (Fort & Dunes)","Jodhpur (Mehrangarh)","Mount Abu","Pushkar"],
+    temples:["Brahma Temple (Pushkar)","Eklingji Temple (Udaipur)"]
+  },
+  { code:"SK", name:"Sikkim",
+    places:["Gangtok","Nathula Pass","Tsomgo Lake","Yumthang Valley","Pelling","Gurudongmar Lake"],
+    temples:["Kirateshwar Mahadev","Ganesh Tok"]
+  },
+  { code:"TN", name:"Tamil Nadu",
+    places:["Ooty","Kodaikanal","Mahabalipuram","Kanyakumari","Pondicherry (nearby)","Rameswaram"],
+    temples:["Meenakshi Amman (Madurai)","Brihadeeswarar (Thanjavur)"]
+  },
+  { code:"TS", name:"Telangana",
+    places:["Charminar","Golconda Fort","Ramoji Film City","Chowmahalla Palace","Hussain Sagar","Warangal Fort"],
+    temples:["Yadagirigutta (Yadadri)","Bhadrachalam Temple"]
+  },
+  { code:"TR", name:"Tripura",
+    places:["Ujjayanta Palace","Neermahal","Jampui Hills","Sepahijala Sanctuary","Unakoti","Heritage Park"],
+    temples:["Tripura Sundari Temple","Fourteen Goddess Temple"]
+  },
+  { code:"UP", name:"Uttar Pradesh",
+    places:["Taj Mahal (Agra)","Varanasi Ghats","Mathura–Vrindavan","Fatehpur Sikri","Sarnath","Lucknow (Imambara)"],
+    temples:["Kashi Vishwanath (Varanasi)","Ram Mandir (Ayodhya)"]
+  },
+  { code:"UK", name:"Uttarakhand",
+    places:["Haridwar","Rishikesh","Nainital","Jim Corbett","Auli","Valley of Flowers"],
+    temples:["Kedarnath Temple","Badrinath Temple"]
+  },
+  { code:"WB", name:"West Bengal",
+    places:["Kolkata (Victoria Memorial)","Darjeeling (Toy Train)","Sundarbans","Kalimpong","Shantiniketan","Digha Beach"],
+    temples:["Dakshineswar Kali Temple","Kalighat Temple"]
+  }
+];
+
+const uts = [
+  { code:"AN", name:"Andaman & Nicobar Islands",
+    places:["Radhanagar Beach (Havelock)","Cellular Jail","Neil Island","Ross Island","Baratang (Limestone Caves)","North Bay"],
+    temples:["Sri Vetrimalai Murugan Temple","Shri Karpaga Vinayagar Temple"]
+  },
+  { code:"CH", name:"Chandigarh",
+    places:["Rock Garden","Sukhna Lake","Rose Garden","Capitol Complex","Leisure Valley","Pinjore Gardens"],
+    temples:["ISKCON Chandigarh","Shri Karthikeya Temple"]
+  },
+  { code:"DN", name:"Dadra & Nagar Haveli and Daman & Diu",
+    places:["Devka Beach (Daman)","Jampore Beach (Daman)","Diu Fort","Naida Caves (Diu)","Vanganga Garden (Silvassa)","Satmaliya Deer Park"],
+    temples:["Somnath Mahadev (Daman)","Gangeshwar Mahadev (Diu)"]
+  },
+  { code:"DL", name:"Delhi (NCT)",
+    places:["India Gate","Qutub Minar","Red Fort","Humayun's Tomb","Lotus Temple","Connaught Place"],
+    temples:["Akshardham Temple","ISKCON Temple (East of Kailash)"]
+  },
+  { code:"JK", name:"Jammu & Kashmir",
+    places:["Dal Lake (Srinagar)","Gulmarg","Pahalgam","Sonamarg","Betaab Valley","Patnitop"],
+    temples:["Vaishno Devi Temple (Katra)","Raghunath Temple (Jammu)"]
+  },
+  { code:"LA", name:"Ladakh",
+    places:["Pangong Lake","Nubra Valley","Khardung La","Leh Palace","Magnetic Hill","Tso Moriri"],
+    temples:["Thiksey Monastery","Hemis Monastery"]
+  },
+  { code:"LD", name:"Lakshadweep",
+    places:["Agatti Island","Bangaram","Kavaratti","Minicoy","Kalpeni","Kadmat"],
+    temples:["Ujra Mosque (Kavaratti)","Juma Masjid (Minicoy)"]
+  },
+  { code:"PY", name:"Puducherry",
+    places:["Promenade Beach","French Quarter","Paradise Beach","Auroville","Sri Aurobindo Ashram","Serenity Beach"],
+    temples:["Manakula Vinayagar Temple","Varadaraja Perumal Temple"]
+  }
+];
+
+/* Utility: Try to get image from Wikipedia (page images). If none, fallback to Unsplash search link.
+   Returns a Promise<string> that resolves to an image URL.
+*/
+async function fetchImageFor(label){
+  // Try Wikipedia pageimages (thumbnail)
+  try{
+    const wikiAPI = 'https://en.wikipedia.org/w/api.php';
+    const params = new URLSearchParams({
+      action: 'query',
+      format: 'json',
+      prop: 'pageimages',
+      piprop: 'thumbnail',
+      pithumbsize: '800',
+      redirects: '1',
+      titles: label,
+      origin: '*'
+    });
+    const res = await fetch(wikiAPI + '?' + params.toString());
+    if(!res.ok) throw new Error('wiki fetch failed');
+    const data = await res.json();
+    if(data && data.query && data.query.pages){
+      const pages = data.query.pages;
+      for(const pid in pages){
+        const page = pages[pid];
+        if(page && page.thumbnail && page.thumbnail.source){
+          return page.thumbnail.source;
+        }
+      }
+    }
+  }catch(e){
+    // ignore and fallback
+  }
+
+  // Fallback: Wikimedia Commons direct image via REST search (attempt)
+  try{
+    const commonsAPI = `https://commons.wikimedia.org/w/api.php`;
+    const cparams = new URLSearchParams({
+      action:'query',
+      format:'json',
+      generator:'search',
+      gsrsearch: label,
+      gsrlimit:1,
+      prop:'imageinfo',
+      iiprop:'url',
+      iiurlwidth:800,
+      redirects:'1',
+      origin:'*'
+    });
+    const cres = await fetch(commonsAPI + '?' + cparams.toString());
+    if(cres.ok){
+      const cdata = await cres.json();
+      if(cdata && cdata.query && cdata.query.pages){
+        const pages = cdata.query.pages;
+        for(const pid in pages){
+          const page = pages[pid];
+          if(page && page.imageinfo && page.imageinfo[0] && page.imageinfo[0].thumburl){
+            return page.imageinfo[0].thumburl;
+          }else if(page && page.imageinfo && page.imageinfo[0] && page.imageinfo[0].url){
+            return page.imageinfo[0].url;
+          }
+        }
+      }
+    }
+  }catch(e){
+    // ignore
+  }
+
+  // Final fallback: Unsplash search (works on Live Server)
+  return `https://source.unsplash.com/800x450/?${encodeURIComponent(label)}`;
+}
+
+/* Build a card: fetch images for 6 places + first temple (7 items), then render slider + lists.
+   We intentionally show a placeholder while images load.
+*/
+function makeCard(item){
+  const card = document.createElement('article');
+  card.className = 'card';
+  card.innerHTML = `
+    <div class="card-head">
+      <div class="chip">${item.code}</div>
+      <div><h3 class="state">${item.name}</h3><div class="muted">Top places & temples</div></div>
+    </div>
+    <div class="slider" aria-hidden="false">
+      <div class="placeholder">Loading images…</div>
+    </div>
+    <div class="lists">
+      <div>
+        <h4>6 Places</h4>
+        <ul>${item.places.slice(0,6).map(p=>`<li>${p}</li>`).join('')}</ul>
+      </div>
+      <div>
+        <h4>2 Temples</h4>
+        <ul>${item.temples.slice(0,2).map(t=>`<li>${t}</li>`).join('')}</ul>
+      </div>
+      <div style="margin-top:8px;">
+        <a class="explore-link" href="state.html?code=${item.code}">Explore More</a>
+      </div>
+    </div>
+  `;
+
+  // Start fetching images asynchronously and then build the slider DOM
+  const sliderEl = card.querySelector('.slider');
+  const sliderNames = [...item.places.slice(0,6), item.temples[0]];
+
+  // Fetch images for all names in parallel (but handle failures)
+  Promise.all(sliderNames.map(name => fetchImageFor(name).catch(()=>`https://source.unsplash.com/800x450/?${encodeURIComponent(name)}`)))
+    .then(urls => {
+      // Remove placeholder
+      sliderEl.innerHTML = '';
+      // create wrapper for images
+      const imgWrapper = document.createElement('div');
+      imgWrapper.className = 'imgwrap';
+      sliderEl.appendChild(imgWrapper);
+      // caption
+      const caption = document.createElement('div');
+      caption.className = 'caption';
+      sliderEl.appendChild(caption);
+
+      urls.forEach((url, i) => {
+        const img = document.createElement('img');
+        img.src = url;
+        img.alt = sliderNames[i];
+        if(i===0) img.classList.add('active');
+        imgWrapper.appendChild(img);
+      });
+
+      caption.textContent = sliderNames[0] || item.name;
+      // set up auto-slide for this slider
+      setupSlider(sliderEl);
+    })
+    .catch(err => {
+      // if something goes wrong, show simple fallback
+      sliderEl.innerHTML = '<div class="placeholder">Image load failed</div>';
+      console.error('Error loading images for', item.name, err);
+    });
+
+  return card;
+}
+
+/* Local slider logic for a single card
+   - uses the img elements inside .slider to cycle
+   - each card has its own interval; intervals are slightly randomized
+*/
+function setupSlider(sliderEl){
+  const imgs = Array.from(sliderEl.querySelectorAll('img'));
+  if(imgs.length === 0) return;
+  const cap = sliderEl.querySelector('.caption');
+  let idx = imgs.findIndex(img => img.classList.contains('active'));
+  if(idx < 0) idx = 0;
+  // ensure only idx is active
+  imgs.forEach((img,i) => img.classList.toggle('active', i===idx));
+  const interval = 3000 + Math.floor(Math.random()*2000); // 3s-5s
+  setInterval(() => {
+    idx = (idx + 1) % imgs.length;
+    imgs.forEach((img,i) => img.classList.toggle('active', i===idx));
+    if(cap) cap.textContent = imgs[idx].alt || '';
+  }, interval);
+}
+
+/* Render all states and UTs into DOM */
+const gridStates = document.getElementById('states');
+const gridUTs = document.getElementById('uts');
+
+(async function renderAll(){
+  // Render states
+  for(const s of states){
+    gridStates.appendChild(makeCard(s));
+    // small delay so browser can progressively render
+    await new Promise(r => setTimeout(r, 50));
+  }
+  // Render UTs
+  for(const u of uts){
+    gridUTs.appendChild(makeCard(u));
+    await new Promise(r => setTimeout(r, 50));
+  }
+})();
+// 🔍 Search bar logic
+const searchInput = document.getElementById('searchBar');
+
+searchInput.addEventListener('keyup', function(e) {
+  const searchText = e.target.value.toLowerCase();
+
+  // saare cards select karo (states + UTs)
+  const allCards = document.querySelectorAll('.card');
+
+  allCards.forEach(card => {
+    const stateName = card.querySelector('.state').textContent.toLowerCase();
+
+    if (stateName.includes(searchText)) {
+      card.style.display = "block";   // show matched card
+    } else {
+      card.style.display = "none";    // hide unmatched card
+    }
+  });
+});
+
+
+
+
+  </script>
+</body>
+</html>
